@@ -133,8 +133,29 @@ sudo systemctl restart sshd
 To alpine linux : 
 
 ```bash
+# installing iptables (alpine linux firewall)
+apk add iptables
+rc-update add iptables
+rc-service iptables start
 
-a```
+# clearing all default rules
+iptables -F
+
+# droping all incoming network traffic. We only allow output traffic.
+
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+# allowing lo(localhost) network traffic 
+iptables -A INPUT -i lo -j ACCEPT
+
+# allowing new sshd port 
+iptables -A INPUT -p tcp --dport 2222 -j ACCEPT
+
+# saving the rule
+rc-service iptables save
+
 
 
 
