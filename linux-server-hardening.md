@@ -126,6 +126,18 @@ If the command prints no output, the configuration syntax is valid. Then restart
 ```bash
 sudo systemctl restart sshd
 ```
+### Network Policies.
+
+**Network Security Rules on linux.**
+
+To alpine linux : 
+
+```bash
+
+a```
+
+
+
 
 
 
