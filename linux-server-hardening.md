@@ -155,10 +155,19 @@ iptables -A INPUT -p tcp --dport 2222 -j ACCEPT
 
 # saving the rule
 rc-service iptables save
+```
 
+** On Rhel : 
 
+```bash
+# identifying new sshd port.
+sudo firewall-cmd --permanent --add-port=2222/tcp
 
+# removing the old sshd service. 
+sudo firewall-cmd --permanent --remove-service=ssh
 
+# saving the rules.
+sudo firewall-cmd --reload
 
 
 
