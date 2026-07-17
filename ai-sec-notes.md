@@ -65,11 +65,11 @@ cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
 For Alpine : 
 ```bash
-vi /etc/ssh/sshd.config.
+vi /etc/ssh/sshd_config.
 ```
 For Rhel : 
 ```bash
-nano /etc/ssh/sshd.config
+sudo nano /etc/ssh/sshd_config
 ```
 ```text
 # Authentication Mechanism
