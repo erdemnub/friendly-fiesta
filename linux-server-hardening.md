@@ -30,9 +30,9 @@ x: includes processes that do not have a controlling terminal.
 
 To the delete unwanted services run:
 ```bash
-rc-status del <service_name> boot
+rc-update del <service_name> boot
 #Kill the running instance immediately since it is still active in memory.
-rc-status <service_name> stop
+rc-service <service_name> stop
 ```
 
 *For Rhel:*
