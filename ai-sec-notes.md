@@ -73,9 +73,9 @@ sudo nano /etc/ssh/sshd_config
 ```
 ```text
 # Authentication Mechanism
-PasswordAuthentication         no   # Force key-based authentication
+PasswordAuthentication         no     #Force key-based authentication
 KbdInteractiveAuthentication   no	  #Disable keyboard-interactive password prompts
-PermitEmptyPasswords	         no   #Block empty passwords
+PermitEmptyPasswords	       no     #Block empty passwords
 
 
 # Access control 
