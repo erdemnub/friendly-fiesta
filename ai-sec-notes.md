@@ -74,25 +74,25 @@ sudo nano /etc/ssh/sshd_config
 ```text
 # Authentication Mechanism
 PasswordAuthentication         no   # Force key-based authentication
-KbdInteractiveAuthentication   no	 # Disable keyboard-interactive password prompts
-PermitEmptyPasswords	          no   #	Block empty passwords
+KbdInteractiveAuthentication   no	  #Disable keyboard-interactive password prompts
+PermitEmptyPasswords	         no   #Block empty passwords
 
 
 # Access control 
-PermitRootLogin no                 # Disable root SSH login
+PermitRootLogin no                   #Disable root SSH login
 AllowUsers	deploy admin	           #Restrict SSH access to listed users
 
 
 #Session and Tİmeout Policies
 
-LoginGraceTime	30	                  #Shorten the authentication window
-MaxAuthTries	3	                      #Limit failed login attempts
-ClientAliveInterval	300	            #Set idle timeout interval
-ClientAliveCountMax	2	              #Disconnect after 2 missed keep-alives
+LoginGraceTime	30	                 #Shorten the authentication window
+MaxAuthTries	3	                     #Limit failed login attempts
+ClientAliveInterval	300	             #Set idle timeout interval
+ClientAliveCountMax	2	               #Disconnect after 2 missed keep-alives
 
 # Feature Disabling
 
-X11Forwarding	no	                  #Disable X11 forwarding
+X11Forwarding	no	                   #Disable X11 forwarding
 AllowAgentForwarding	no	           #Disable agent forwarding
 AllowTcpForwarding	no	             #Disable SSH tunnels for users who do not need them
 ```
