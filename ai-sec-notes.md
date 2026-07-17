@@ -11,14 +11,22 @@ In alpine linux The default startup uses the sysinit, boot, and default runlevel
 
 **First Disabled all unnecessary services.** 
 
+
 ```bash
 rc-status --all    # to see all running service:
 ```
 ```bash
 ps aux     # show detailed live processes.
-``` 
+```
+Here's a breakdown of the command:
 
+ps: is the process status command.
 
+a: displays information about other users' processes as well as your own.
+
+u: displays the processes belonging to the specified usernames.
+
+x: includes processes that do not have a controlling terminal.
 
 To the delete unwanted services run:
 ```bash
@@ -27,4 +35,112 @@ rc-status del <service_name> boot
 rc-status <service_name> stop
 ```
 
- 
+*For Rhel:*
+
+```bash
+systemctl --type=service # to show running service on machine.
+``` 
+*Stopping and disabled service:*
+```bash
+$sudo systemctl stop <service_name>
+$sudo systemctl disable <service_name>
+```
+
+
+
+
+### Configured and hardening sshd service.
+
+**Before applying any of these changes, keep your current SSH session open and make sure you have an alternative way to access your server, such as a console connection, in case you lock yourself out.**
+
+
+### Back up your configuration:
+```bash
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+```
+
+-Applying security settings to sshd config file: 
+
+**Opening sshd file.**
+
+For Alpine : 
+```bash
+vi /etc/ssh/sshd.config.
+```
+For Rhel : 
+```bash
+nano /etc/ssh/sshd.config
+```
+```text
+# Authentication Mechanism
+PasswordAuthentication         no   # Force key-based authentication
+KbdInteractiveAuthentication   no	 # Disable keyboard-interactive password prompts
+PermitEmptyPasswords	          no   #	Block empty passwords
+
+
+# Access control 
+PermitRootLogin no                 # Disable root SSH login
+AllowUsers	deploy admin	           #Restrict SSH access to listed users
+
+
+#Session and Tİmeout Policies
+
+LoginGraceTime	30	                  #Shorten the authentication window
+MaxAuthTries	3	                      #Limit failed login attempts
+ClientAliveInterval	300	            #Set idle timeout interval
+ClientAliveCountMax	2	              #Disconnect after 2 missed keep-alives
+
+# Feature Disabling
+
+X11Forwarding	no	                  #Disable X11 forwarding
+AllowAgentForwarding	no	           #Disable agent forwarding
+AllowTcpForwarding	no	             #Disable SSH tunnels for users who do not need them
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-After each change, test the configuration before SSH.
+```bash
+sudo sshd -t
+```
+
+If the command prints no output, the configuration syntax is valid. Then restart the SSH service:
+```bash
+sudo systemctl restart sshd
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
