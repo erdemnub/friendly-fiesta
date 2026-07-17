@@ -157,7 +157,7 @@ iptables -A INPUT -p tcp --dport 2222 -j ACCEPT
 rc-service iptables save
 ```
 
-** On Rhel : 
+** On Rhel :** 
 
 ```bash
 # identifying new sshd port.
